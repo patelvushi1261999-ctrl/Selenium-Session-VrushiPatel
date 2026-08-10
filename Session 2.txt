@@ -1,0 +1,80 @@
+Task 2 --> Write a Python script using Selenium and webdriver-manager to launch Chrome and open https://www.zomato.com, then print the page title and close the browser using driver.close().
+
+
+from selenium import webdriver
+from selenium.webdriver.chrome.service import Service
+from webdriver_manager.chrome import ChromeDriverManager
+
+# Launch Chrome
+service = Service(ChromeDriverManager().install())
+driver = webdriver.Chrome(service=service)
+
+# Open Zomato
+driver.get("https://www.zomato.com")
+print(driver.title)
+
+# Close browser
+driver.close()
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Task 3 --> Modify your script to launch Firefox instead of Chrome using the appropriate WebDriver from webdriver_manager, and print the browser name along with the page title.
+
+
+from selenium import webdriver
+from selenium.webdriver.firefox.service import Service
+from webdriver_manager.firefox import GeckoDriverManager
+
+service = Service(GeckoDriverManager().install())
+driver = webdriver.Firefox(service=service)
+
+# Open Zomato
+driver.get("https://www.zomato.com")
+print("Browser:", driver.name)
+print("Title:", driver.title)
+
+driver.close()
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Task 4 --> Configure Chrome browser options in your Selenium script to start the browser in incognito mode, then open https://www.spotify.com and print the current URL before quitting the browser using driver.quit().<br><br><em><strong>Hint:</strong> Use ChromeOptions and add_argument('--incognito').</em>
+
+from selenium import webdriver
+from selenium.webdriver.chrome.service import Service
+from webdriver_manager.chrome import ChromeDriverManager
+
+options = webdriver.ChromeOptions()
+options.add_argument("--incognito")
+
+service = Service(ChromeDriverManager().install())
+driver = webdriver.Chrome(service=service, options=options)
+
+# Open Spotify
+driver.get("https://www.spotify.com")
+print(driver.current_url)
+
+driver.quit()
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Task 5 --> Update your script to launch Microsoft Edge with Selenium, and explain the difference between driver.close() and driver.quit() by adding comments in your code where each is used.
+
+from selenium import webdriver
+from selenium.webdriver.edge.service import Service
+from webdriver_manager.microsoft import EdgeChromiumDriverManager
+
+service = Service(EdgeChromiumDriverManager().install())
+driver = webdriver.Edge(service=service)
+
+# Open Zomato
+driver.get("https://www.zomato.com")
+
+# driver.close() → closes current tab only
+# driver.quit() → closes entire browser session
+
+print(driver.title)
+
+# Example usage
+driver.close()  # closes one tab
+driver.quit()   # shuts down browser completely
+
+
