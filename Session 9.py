@@ -94,11 +94,6 @@ except TimeoutException:
 # -------------------------------
 driver.get("https://www.irctc.co.in/nget/train-search")
 
-# Best approach: Combination of waits
-# - Use implicit wait for general elements
-# - Use explicit wait for critical actions (like search results)
-# - Use fluent wait for dynamic content that loads unpredictably
-
 driver.implicitly_wait(10)  # general elements
 
 try:
@@ -107,6 +102,4 @@ try:
     print("Train results loaded successfully")
 except TimeoutException:
     print("Train results did not load in time")
-
-# Close browser
 driver.quit()
